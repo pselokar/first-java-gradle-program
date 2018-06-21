@@ -1,0 +1,38 @@
+apply plugin: 'application'
+
+mainClassName = 'test.Addition'
+
+repositories {
+    mavenCentral()
+}
+
+defaultTasks 'clean', 'build', 'run'
+
+/*clean {
+        doLast {
+        	println 'Executing the clean task'
+        }
+	}
+
+build {
+		doLast {
+			println 'Executing the build task'
+		}
+	}
+*/
+run {
+		standardInput = System.in
+	}
+
+/*task execute {
+    	finalizedBy build, run
+	}
+*/	
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect(),
+      'Main-Class': 'test.Addition'
+    )
+  }
+}
